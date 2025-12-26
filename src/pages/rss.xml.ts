@@ -9,9 +9,9 @@ export async function GET(context: AstroConfig) {
   const posts = await getCollection("blog");
   return rss({
     // `<title>` field in output xml
-    title: "Roze | Writings",
+    title: "Roze | Blog",
     // `<description>` field in output xml
-    description: "A humble Astronaut’s guide to the stars",
+    description: "Latest posts from Roze's blog",
     // Pull in your project "site" from the endpoint context
     // https://docs.astro.build/en/reference/api-reference/#contextsite
     site: context.site as string,
@@ -21,7 +21,7 @@ export async function GET(context: AstroConfig) {
       title: post.data.title,
       description: post.data.excerpt,
       pubDate: post.data.date,
-      link: `/writing/${post.slug}`,
+      link: `/blog/${post.slug}`,
       content: sanitizeHtml(parser.render(post.body)),
     })),
     // (optional) inject custom xml

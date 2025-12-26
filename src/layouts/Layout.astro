@@ -6,8 +6,6 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/noto-nastaliq-urdu";
 import "@fontsource-variable/noto-serif";
 import Nav from "@components/navigation/Nav.astro";
-import { Image } from "astro:assets";
-import graphImg from "../images/graph.svg";
 
 interface Props {
   title: string;
@@ -31,13 +29,8 @@ const { title, description, image, type, date } = Astro.props;
   />
   <body class="relative">
     <SpeedInsights />
-    <header class="flex items-center md:pb-8 justify-between">
+    <header class="md:pb-8">
       <Nav />
-      <Image
-        src={graphImg}
-        alt="Three polygons connected"
-        class="md:w-16 w-12 h-auto"
-      />
     </header>
     <main class="text-base font-serif pt-4 md:pt-0"><slot /></main>
   </body>

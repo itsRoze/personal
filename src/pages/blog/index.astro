@@ -1,6 +1,6 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import BlogCard from "@components/BlogCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import BlogCard from "@/components/BlogCard.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
@@ -13,8 +13,8 @@ allPosts.sort((a, b) => {
 });
 ---
 
-<Layout title="ROZE | WRITING" description="Blog">
-  <h1 class="text-3xl font-bold pb-10">Writing.</h1>
+<Layout title="Roze | Blog" description="Blog">
+  <h1 class="text-3xl font-bold pb-10">Blog</h1>
   <section>
     <ul class="space-y-6">
       {
@@ -25,7 +25,7 @@ allPosts.sort((a, b) => {
           return (
             <li>
               <BlogCard
-                url={`/writing/${post.slug}`}
+                url={`/blog/${post.slug}`}
                 title={post.data.title}
                 excerpt={post.data.excerpt}
                 date={post.data.date}

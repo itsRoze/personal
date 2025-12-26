@@ -1,23 +1,24 @@
 [
   {
     "title": "4RL Digital Icebreaker",
-    "description": "An early prototype for 4RL that could be used in person for events, conferences, and meetups.",
+    "description": "An early prototype for an early stage start up that could be used in person for events, conferences, and meetups.",
     "year": "2024",
-    "url": "https://beta.4rlapp.com/",
+    "url": "https://4rlapp.com/",
+    "github": "https://github.com/itsRoze/4RL-Prototype",
     "tags": ["NextJS", "AWS", "Tailwind CSS"]
   },
   {
     "title": "Dex",
     "description": "Dex is a personal contacts manager that I built so that I could keep in touch with interesting people I would meet at networking events",
     "year": "2024",
-    "url": "https://github.com/itsRoze/dex",
+    "github": "https://github.com/itsRoze/dex",
     "tags": ["SolidJS", "Go", "Tailwind CSS", "sqlite"]
   },
   {
     "title": "Bookish",
     "description": "Bookish is a semantic search engine that finds books based on the semantic meaning of your query. Typical AI apps make LLMs that UI, but I was interested in other ways of using LLMs to personalize content.",
     "year": "2024",
-    "url": "https://github.com/third-systems/book-search",
+    "github": "https://github.com/third-systems/book-search",
     "tags": [
       "AI",
       "LLM",
@@ -33,7 +34,7 @@
     "title": "Grep Clone",
     "description": "I built a simple version of grep from scratch, a command-line utility for search files. It was primarily made to understand the concurrency model in Go",
     "year": "2024",
-    "url": "https://github.com/itsRoze/go-grep",
+    "github": "https://github.com/itsRoze/go-grep",
     "tags": ["Go", "Grep"]
   },
   {
@@ -41,20 +42,14 @@
     "description": "My first SaaS app. I never found a great productivity manager, so I built an opinionated one. Modal was designed with simplicity for the everyday user",
     "year": "2023-Present",
     "url": "https://usemodal.com/",
+    "github": "https://github.com/itsRoze/modal",
     "tags": ["React", "NextJS", "Tailwind CSS", "React Native", "AWS", "SQL"]
-  },
-  {
-    "title": "Giftable",
-    "description": "I created Giftable so that I could remember gift ideas for friends and family, as well as myself :) I thought building a social network would be a great learning experience to up my code skills too",
-    "year": "2022-2023",
-    "url": "https://giftableapp.com/",
-    "tags": ["React", "NextJS", "Tailwind CSS", "SQL"]
   },
   {
     "title": "DinDin",
     "description": "DinDin is a dinner party app that makes it easier to scheule and attend dinner parties. This project taught me how to design mobile apps for both android and ios",
     "year": "2019",
-    "url": "https://github.com/itsRoze/DinDin",
+    "github": "https://github.com/itsRoze/DinDin",
     "tags": ["React Native", "Firebase"]
   },
   {
