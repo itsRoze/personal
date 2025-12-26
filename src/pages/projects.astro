@@ -4,13 +4,13 @@ import ProjectCard from "@components/ProjectCard.astro";
 import projects from "@data/projects.json";
 ---
 
-<Layout title="ROZE | PROJECTS" description="Coding projects">
-  <h1 class="text-3xl font-bold pb-10">Projects.</h1>
+<Layout title="Roze | Projects" description="Coding projects">
+  <h1 class="text-3xl font-bold pb-10">Projects</h1>
   <ul class="space-y-6">
     {
-      projects.map(({ title, url, description }) => (
+    projects.map(({ title, url, github, description }) => (
         <li>
-          <ProjectCard url={url} title={title} description={description} />
+      <ProjectCard url={url} github={github} title={title} description={description} />
         </li>
       ))
     }

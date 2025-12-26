@@ -1,14 +1,21 @@
 ---
 interface Props {
-  url: string;
+  url?: string;
+  github?: string;
   title: string;
   description: string;
 }
 
-const { url, title, description } = Astro.props;
+const { url, github, title, description } = Astro.props;
 ---
 
 <div class="space-y-2">
-  <a href={url} target="_blank" class="underline underline-offset-8 text-xl">{title}</a>
+  <div>
+    <h4  class="text-xl">{title}</h4>
+    <div class="flex items-center space-x-4">
+      {url && <a href={url} target="_blank" class="text-sm text-gray-700 hover:underline">Website</a>}
+      {github && <a href={github} target="_blank" class="text-sm text-gray-700 hover:underline">Github</a>}
+    </div>
+  </div>
   <p>{description}</p>
 </div>
