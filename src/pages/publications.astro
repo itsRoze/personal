@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import publications from "@data/publications.json";
+---
+
+<Layout title="Roze | Projects" description="Coding projects">
+  <h1 class="text-3xl font-bold pb-10">Publications</h1>
+  <ul class="space-y-6">
+    {
+    publications.map(({ title, url, description }) => (
+        <li>
+          <div class="space-y-2">
+            <div>
+              <a href={url} target="_blank" class="text-xl hover:underline">{title}</a>
+            </div>
+            <p>{description}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>
