@@ -1,6 +1,5 @@
 ---
-import SpeedInsights from "@vercel/speed-insights/astro";
-import "@styles/global.css";
+import "@styles/app.css";
 import Head from "@components/Head.astro";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/noto-nastaliq-urdu";
@@ -28,7 +27,6 @@ const { title, description, image, type, date } = Astro.props;
     date={date}
   />
   <body class="relative">
-    <SpeedInsights />
     <header class="md:pb-8">
       <Nav />
     </header>

@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import BlogCard from "@/components/BlogCard.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 const allPosts = await getCollection("blog");
 
@@ -19,13 +19,13 @@ allPosts.sort((a, b) => {
     <ul class="space-y-6">
       {
         allPosts.map(async (post) => {
-          const { remarkPluginFrontmatter } = await post.render();
+          const { remarkPluginFrontmatter } = await render(post);
           if (post.data.isDraft) return null;
 
           return (
             <li>
               <BlogCard
-                url={`/blog/${post.slug}`}
+                url={`/blog/${post.id}`}
                 title={post.data.title}
                 excerpt={post.data.excerpt}
                 date={post.data.date}
