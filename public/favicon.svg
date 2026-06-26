@@ -1,0 +1,36 @@
+<svg viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+  <rect x="192" y="352" width="16" height="168" fill="#1f9b4e"/>
+  <polygon points="192,420 146,398 146,432 192,446" fill="#37c76d"/>
+  <polygon points="208,456 254,436 254,470 208,482" fill="#1f9b4e"/>
+  <g fill="#e01e37">
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(0 200 200)"/>
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(45 200 200)"/>
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(90 200 200)"/>
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(135 200 200)"/>
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(180 200 200)"/>
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(225 200 200)"/>
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(270 200 200)"/>
+    <path d="M200,200 L181,116 L200,48 L219,116 Z" transform="rotate(315 200 200)"/>
+  </g>
+  <g fill="#9e1024">
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(22.5 200 200)"/>
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(67.5 200 200)"/>
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(112.5 200 200)"/>
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(157.5 200 200)"/>
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(202.5 200 200)"/>
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(247.5 200 200)"/>
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(292.5 200 200)"/>
+    <path d="M200,200 L187,142 L200,96 L213,142 Z" transform="rotate(337.5 200 200)"/>
+  </g>
+  <g fill="#ff7088">
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(0 200 200)"/>
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(45 200 200)"/>
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(90 200 200)"/>
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(135 200 200)"/>
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(180 200 200)"/>
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(225 200 200)"/>
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(270 200 200)"/>
+    <path d="M200,200 L191,168 L200,138 L209,168 Z" transform="rotate(315 200 200)"/>
+  </g>
+  <rect x="188" y="188" width="24" height="24" fill="#160f14"/>
+</svg>
