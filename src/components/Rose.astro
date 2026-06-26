@@ -1,0 +1,86 @@
+---
+/**
+ * The roze.dev signature glyph: a faceted, angular rosette bloom in red tones
+ * on a blocky green stem. Hard-edged ("pixel") art per DESIGN.md → The Rose.
+ * Reusable at any size; colors are driven by the design tokens.
+ */
+interface Props {
+  size?: number; // rendered width in px (height scales with the viewBox)
+  class?: string;
+  shadow?: boolean; // riso misregister drop-shadow (use on large instances)
+  title?: string;
+}
+
+const { size = 40, class: className = "", shadow = false, title = "Roze" } =
+  Astro.props;
+
+// Angular petals (pointed facets), measured from the bloom center (200,200).
+const PETAL_OUTER = "M200,200 L181,116 L200,48 L219,116 Z";
+const PETAL_MID = "M200,200 L187,142 L200,96 L213,142 Z";
+const PETAL_INNER = "M200,200 L191,168 L200,138 L209,168 Z";
+
+const EIGHT = [0, 45, 90, 135, 180, 225, 270, 315];
+const EIGHT_OFFSET = EIGHT.map((a) => a + 22.5);
+
+const rings = [
+  { d: PETAL_OUTER, fill: "var(--color-rose-red)", angles: EIGHT },
+  { d: PETAL_MID, fill: "var(--color-rose-red-dark)", angles: EIGHT_OFFSET },
+  { d: PETAL_INNER, fill: "var(--color-rose-red-hi)", angles: EIGHT },
+];
+
+const VB_W = 400;
+const VB_H = 560;
+const height = Math.round((size * VB_H) / VB_W);
+const filter = shadow ? "drop-shadow(5px 6px 0 var(--color-indigo))" : undefined;
+---
+
+<svg
+  viewBox={`0 0 ${VB_W} ${VB_H}`}
+  width={size}
+  height={height}
+  class={`pixelated ${className}`}
+  style={filter ? `filter:${filter}` : undefined}
+  role="img"
+  aria-label={title}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>{title}</title>
+  <defs>
+    <pattern id="rose-ht" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="var(--color-ink)"></circle>
+    </pattern>
+    <clipPath id="rose-bloom"><circle cx="200" cy="200" r="158"></circle></clipPath>
+  </defs>
+
+  {/* green pixel stem + angular leaves (drawn first, behind the bloom) */}
+  <rect x="192" y="352" width="16" height="168" fill="var(--color-rose-green)"></rect>
+  <polygon
+    points="192,420 146,398 146,432 192,446"
+    fill="var(--color-rose-green-hi)"></polygon>
+  <polygon
+    points="208,456 254,436 254,470 208,482"
+    fill="var(--color-rose-green)"></polygon>
+
+  {/* the bloom: three rings of angular petals in red tones */}
+  {
+    rings.map((ring) =>
+      ring.angles.map((a) => (
+        <path d={ring.d} fill={ring.fill} transform={`rotate(${a} 200 200)`} />
+      )),
+    )
+  }
+
+  {/* dark pixel core */}
+  <rect x="188" y="188" width="24" height="24" fill="var(--color-ink)"></rect>
+
+  {/* halftone grain over the bloom only */}
+  <rect
+    x="0"
+    y="0"
+    width="400"
+    height="400"
+    fill="url(#rose-ht)"
+    clip-path="url(#rose-bloom)"
+    opacity="0.16"
+    style="mix-blend-mode:multiply"></rect>
+</svg>
