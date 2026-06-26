@@ -1,8 +1,12 @@
 ---
 /**
  * Big Anton poster type with the riso off-register overprint: pink + marigold
- * ghost copies offset behind the ink text (mix-blend multiply), like the "ROZE"
- * wordmark in the design. Set ghost={false} for plain poster type.
+ * ghost copies offset behind the ink text (mix-blend multiply).
+ *
+ * The ghosts are *empty* spans whose text is drawn via CSS `content: attr(...)`,
+ * so the document's text content is the visible word exactly ONCE — crawlers and
+ * screen readers see "ROZE", not "ROZEROZEROZE". Set ghost={false} for plain
+ * poster type.
  */
 interface Props {
   text: string;
@@ -15,24 +19,40 @@ const { text, as: Tag = "h1", ghost = true, class: className = "" } =
   Astro.props;
 ---
 
-<Tag class={`relative inline-block font-poster uppercase leading-[0.9] ${className}`}>
+<Tag
+  class:list={[
+    "ph relative inline-block font-poster uppercase leading-[0.9]",
+    className,
+  ]}
+>
   {
     ghost && (
       <>
-        <span
-          aria-hidden="true"
-          class="pointer-events-none absolute inset-0 -translate-x-[3px] -translate-y-[2px] text-marigold mix-blend-multiply"
-        >
-          {text}
-        </span>
-        <span
-          aria-hidden="true"
-          class="pointer-events-none absolute inset-0 translate-x-[4px] translate-y-[3px] text-pink mix-blend-multiply"
-        >
-          {text}
-        </span>
+        <span class="ph-ghost ph-ghost--marigold" data-text={text} aria-hidden="true" />
+        <span class="ph-ghost ph-ghost--pink" data-text={text} aria-hidden="true" />
       </>
     )
   }
   <span class="relative">{text}</span>
 </Tag>
+
+<style>
+  .ph-ghost {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+  }
+  /* the ghost's visible text comes from CSS, not the DOM */
+  .ph-ghost::before {
+    content: attr(data-text);
+  }
+  .ph-ghost--marigold {
+    color: var(--color-marigold);
+    transform: translate(-3px, -2px);
+  }
+  .ph-ghost--pink {
+    color: var(--color-pink);
+    transform: translate(4px, 3px);
+  }
+</style>
