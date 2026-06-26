@@ -1,0 +1,49 @@
+---
+import Layout from "@layouts/Layout.astro";
+import PosterHeading from "@components/PosterHeading.astro";
+---
+
+<Layout
+  title="About — Roze"
+  description="Engineer, writer & maker working where technology meets art and public life."
+>
+  <section class="mx-auto w-full max-w-[720px] px-6 py-14 md:px-8">
+    <p class="mb-4 font-mono text-xs tracking-[0.2em] text-indigo uppercase">
+      Engineer · Writer · Maker
+    </p>
+    <PosterHeading
+      text="About"
+      as="h1"
+      ghost={false}
+      class="mb-8 text-5xl md:text-7xl"
+    />
+
+    <div class="space-y-5 font-sans text-lg leading-relaxed md:text-xl">
+      <p>
+        My work sits at the intersection of technology, art, and public life.
+        I've created data visualizations exhibited in art spaces, built tools
+        cited in human rights reports, held fellowships in playwriting, and built
+        independent software projects and startups.
+      </p>
+      <p>
+        I studied computer science at the University of Virginia, where my machine
+        learning research was awarded High Distinctions. I later worked on
+        healthcare interoperability at Epic before becoming an independent engineer
+        and researcher. Now I'm an engineer at First Round Capital building tools
+        to help find new startups.
+      </p>
+      <p>
+        If you'd like to work together, you can reach me at <span
+          class="font-mono whitespace-nowrap text-indigo">roze@codestache dot com</span
+        >.
+      </p>
+    </div>
+
+    <div
+      class="mt-10 flex items-center gap-3 font-mono text-sm text-muted"
+    >
+      <span class="h-0.5 w-9 bg-pink"></span> Roze
+      <span class="urdu text-2xl text-pink">روز</span>
+    </div>
+  </section>
+</Layout>
