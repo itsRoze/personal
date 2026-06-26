@@ -1,18 +1,28 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ProjectCard from "@components/ProjectCard.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import WorkCard from "@components/WorkCard.astro";
 import projects from "@data/projects.json";
+
+const accents = ["indigo", "pink", "marigold"] as const;
 ---
 
-<Layout title="Roze | Projects" description="Coding projects">
-  <h1 class="text-3xl font-bold pb-10">Projects</h1>
-  <ul class="space-y-6">
-    {
-    projects.map(({ title, url, github, description }) => (
-        <li>
-      <ProjectCard url={url} github={github} title={title} description={description} />
-        </li>
-      ))
-    }
-  </ul>
+<Layout title="Work — Roze" description="Selected projects by Roze.">
+  <section class="mx-auto w-full max-w-[1100px] px-6 py-14 md:px-10">
+    <SectionHeader title="Work" caption={`[ ${projects.length} projects ]`} rose />
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+      {
+        projects.map((p, i) => (
+          <WorkCard
+            title={p.title}
+            year={p.year}
+            tag={p.tags?.[0]}
+            url={p.url}
+            github={p.github}
+            accent={accents[i % accents.length]}
+          />
+        ))
+      }
+    </div>
+  </section>
 </Layout>
