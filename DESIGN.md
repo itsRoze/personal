@@ -66,7 +66,7 @@ Palette (light):
 | rose-green-hi | `#37c76d` | rose leaves |
 
 ## Spacing Scale
-4-base editorial rhythm: **4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 90 px**. Section vertical padding ~90px; content max-width **1100px** (chrome) / **~680px** (reading column).
+4-base editorial rhythm: **4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 90 px**. Section vertical padding ~90px; content max-width **1100px** (chrome) / **720px** (reading column).
 
 ## Layout
 Poster construction: a 1100px max container with generous top space, **hard ink borders** (3–4px) separating sections, and an asymmetric, color-blocked hero (poster wordmark + offset ghosts + rose accent + halftone field). Indexes (writing, work) are full-width bordered rows with monospace metadata right-aligned. Reading view narrows to a ~680px column for comfort. Break symmetry intentionally (off-register type, bleeding rose, diagonal/dot fills in work frames) — never "centered everything centered."

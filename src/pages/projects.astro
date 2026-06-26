@@ -9,7 +9,12 @@ const accents = ["indigo", "pink", "marigold"] as const;
 
 <Layout title="Work — Roze" description="Selected projects by Roze.">
   <section class="mx-auto w-full max-w-[1100px] px-6 py-14 md:px-10">
-    <SectionHeader title="Work" caption={`[ ${projects.length} projects ]`} rose />
+    <SectionHeader
+      as="h1"
+      title="Work"
+      caption={`[ ${projects.length} projects ]`}
+      rose
+    />
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
       {
         projects.map((p, i) => (
