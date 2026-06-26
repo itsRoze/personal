@@ -9,10 +9,16 @@ interface Props {
   class?: string;
   shadow?: boolean; // riso misregister drop-shadow (use on large instances)
   title?: string;
+  decorative?: boolean; // hide from a11y tree when it sits next to a text label
 }
 
-const { size = 40, class: className = "", shadow = false, title = "Roze" } =
-  Astro.props;
+const {
+  size = 40,
+  class: className = "",
+  shadow = false,
+  title = "Roze",
+  decorative = false,
+} = Astro.props;
 
 // Angular petals (pointed facets), measured from the bloom center (200,200).
 const PETAL_OUTER = "M200,200 L181,116 L200,48 L219,116 Z";
@@ -40,11 +46,12 @@ const filter = shadow ? "drop-shadow(5px 6px 0 var(--color-indigo))" : undefined
   height={height}
   class={`pixelated ${className}`}
   style={filter ? `filter:${filter}` : undefined}
-  role="img"
-  aria-label={title}
+  role={decorative ? undefined : "img"}
+  aria-label={decorative ? undefined : title}
+  aria-hidden={decorative ? "true" : undefined}
   xmlns="http://www.w3.org/2000/svg"
 >
-  <title>{title}</title>
+  {!decorative && <title>{title}</title>}
   <defs>
     <pattern id="rose-ht" width="9" height="9" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.6" fill="var(--color-ink)"></circle>

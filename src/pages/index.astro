@@ -6,24 +6,9 @@ import SectionHeader from "@components/SectionHeader.astro";
 import IndexRow from "@components/IndexRow.astro";
 import WorkCard from "@components/WorkCard.astro";
 import projects from "@data/projects.json";
-import { getCollection, render } from "astro:content";
+import { getWritingRows } from "@utils/posts";
 
-const posts = (await getCollection("blog"))
-  .filter((p) => !p.data.isDraft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const writing = await Promise.all(
-  posts.slice(0, 4).map(async (p) => {
-    const { remarkPluginFrontmatter } = await render(p);
-    return {
-      href: `/blog/${p.id}`,
-      title: p.data.title,
-      excerpt: p.data.excerpt,
-      year: new Date(p.data.date).getFullYear(),
-      meta: remarkPluginFrontmatter.minutesRead as string,
-    };
-  }),
-);
+const writing = await getWritingRows(4);
 
 const accents = ["indigo", "pink", "marigold"] as const;
 const work = projects.slice(0, 3);
@@ -54,7 +39,7 @@ const work = projects.slice(0, 3);
             class="text-[24vw] leading-[0.82] md:text-[170px]"
           />
         </div>
-        <Rose size={150} shadow class="hidden shrink-0 md:block" />
+        <Rose size={150} shadow decorative class="hidden shrink-0 md:block" />
       </div>
       <p class="max-w-[34ch] font-sans text-xl leading-snug md:text-2xl">
         Working where technology meets art and public life — data visualizations
@@ -62,12 +47,6 @@ const work = projects.slice(0, 3);
           class="text-muted">and software built mostly out of curiosity.</span
         >
       </p>
-      <div
-        class="mt-2 flex items-center gap-3 font-mono text-sm text-muted"
-      >
-        <span class="h-0.5 w-9 bg-indigo"></span> Roze
-        <span class="urdu text-2xl text-pink">روز</span>
-      </div>
     </div>
   </section>
 
