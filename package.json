@@ -7,13 +7,16 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "typecheck": "astro check",
-    "preview": "astro preview",
+    "preview": "pnpm run build && wrangler dev",
     "astro": "astro",
     "format:check": "prettier --plugin-search-dir=. --check .",
-    "format": "prettier --plugin-search-dir=. --write ."
+    "format": "prettier --plugin-search-dir=. --write .",
+    "generate-types": "wrangler types",
+    "deploy": "pnpm run build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
+    "@astrojs/cloudflare": "^14.0.1",
     "@astrojs/markdown-remark": "^7.2.0",
     "@astrojs/rss": "^4.0.18",
     "@fontsource-variable/archivo": "^5.2.8",
@@ -40,6 +43,7 @@
     "@types/sanitize-html": "^2.11.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.12.3",
-    "prettier-plugin-tailwindcss": "^0.5.14"
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "wrangler": "^4.105.0"
   }
 }
