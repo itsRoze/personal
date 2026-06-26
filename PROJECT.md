@@ -34,11 +34,13 @@ Current → **target** for this revamp:
 - Note: README mentions SolidJS but it is NOT in dependencies (stale doc).
 
 ## Deploy
-**Migrating Vercel → Cloudflare Pages** (decided 2026-06-26 in plan-eng-review).
-Site is `output: "static"` (host-agnostic); the `@astrojs/vercel` adapter is being
-dropped and `@vercel/analytics`/speed-insights removed in favor of Cloudflare Web
-Analytics. Repo: `github.com/itsRoze/personal`. Domain stays on Vercel until the
-DNS cutover (manual dashboard step, deferred). Build: `pnpm build` → `dist/`.
+**Cloudflare Workers (Static Assets)** — moved off Vercel (2026-06-26). Site is
+`output: "static"`; served by an assets-only Worker (`personal`) configured in
+`wrangler.jsonc` (`assets.directory: ./dist`, no `main`). Git-connected, so every
+push to `main` builds (`pnpm build`) and deploys. Live at
+`personal.elewis9989.workers.dev`; domain `roze.dev` transferred to Cloudflare DNS
+(custom-domain attach is the last manual step). Analytics via Cloudflare Web
+Analytics. Repo: `github.com/itsRoze/personal`. Ships direct-to-main (no PR).
 
 ## Design Priority
 **high.** It's a portfolio — the look *is* the product. A coherent design system

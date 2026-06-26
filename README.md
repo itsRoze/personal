@@ -22,12 +22,17 @@ pnpm build    # astro check && astro build → dist/
 pnpm preview
 ```
 
-## Deploy — Cloudflare Pages
+## Deploy — Cloudflare Workers (Static Assets)
 
-The site builds to a host-agnostic static `dist/` (no adapter). To deploy on
-Cloudflare Pages:
+The site builds to a host-agnostic static `dist/` (no framework adapter) and is
+served by an **assets-only Cloudflare Worker** — config in [`wrangler.jsonc`](./wrangler.jsonc)
+(`assets.directory: ./dist`, no `main`).
 
-1. In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to Git**, and pick the `itsRoze/personal` repo.
-2. Build settings: **Build command** `pnpm build`, **Build output directory** `dist`.
-3. (Optional) Enable **Web Analytics** for the project (privacy-friendly, no code).
-4. Add the custom domain `roze.dev` under **Custom domains** and move DNS when ready (the domain can stay on its current host until cutover).
+- **Auto-deploy:** the Worker (`personal`) is connected to this repo, so every push
+  to `main` runs `pnpm build` and deploys. Build command `pnpm build`, output `dist`.
+- **Manual deploy:** `npx wrangler login` once, then `npx wrangler deploy` (uses
+  `wrangler.jsonc`). `npx wrangler deploy --dry-run` validates config without deploying.
+- **Live:** `personal.elewis9989.workers.dev` → custom domain `roze.dev` (attach under
+  the Worker's **Settings → Domains & Routes**; DNS is on Cloudflare).
+- **Analytics:** Cloudflare Web Analytics (enable in the dashboard; no code). `public/_headers`
+  sets security + asset-caching headers. `.node-version` pins the build to Node 22.
