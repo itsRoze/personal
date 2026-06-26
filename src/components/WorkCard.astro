@@ -1,0 +1,68 @@
+---
+/**
+ * A work/project card: a riso-textured square frame with a mono corner tag,
+ * then a title + year caption and optional links. The frame's halftone ink
+ * rotates by accent for variety across a grid.
+ */
+interface Props {
+  title: string;
+  year?: string | number;
+  tag?: string;
+  url?: string;
+  github?: string;
+  accent?: "indigo" | "pink" | "marigold";
+}
+
+const { title, year, tag, url, github, accent = "indigo" } = Astro.props;
+
+const fill = {
+  indigo: "var(--color-indigo)",
+  pink: "var(--color-pink)",
+  marigold: "var(--color-marigold)",
+}[accent];
+
+const href = url ?? github;
+const frameStyle = `background-image:radial-gradient(${fill} 18%, transparent 20%);background-size:11px 11px;`;
+---
+
+<div class="group">
+  <a
+    href={href}
+    target={href ? "_blank" : undefined}
+    rel={href ? "noopener noreferrer" : undefined}
+    class="block"
+  >
+    <div
+      class="relative aspect-square overflow-hidden border-[3px] border-line bg-paper transition-transform group-hover:-translate-y-1"
+      style={frameStyle}
+    >
+      {
+        tag && (
+          <span class="absolute top-0 left-0 bg-ink px-2 py-1 font-mono text-[10px] tracking-wide text-bg uppercase">
+            {tag}
+          </span>
+        )
+      }
+    </div>
+  </a>
+  <div class="mt-3 flex items-baseline justify-between gap-3">
+    <span class="font-sans font-extrabold uppercase">{title}</span>
+    {year && <span class="font-mono text-xs text-faint">{year}</span>}
+  </div>
+  {
+    (url || github) && (
+      <div class="mt-1 flex gap-3 font-mono text-xs text-muted">
+        {url && (
+          <a href={url} target="_blank" rel="noopener noreferrer" class="hover:text-pink">
+            site ↗
+          </a>
+        )}
+        {github && (
+          <a href={github} target="_blank" rel="noopener noreferrer" class="hover:text-pink">
+            github ↗
+          </a>
+        )}
+      </div>
+    )
+  }
+</div>

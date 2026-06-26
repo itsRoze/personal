@@ -1,0 +1,41 @@
+---
+/**
+ * An editorial index row: bold title + optional excerpt, with right-aligned
+ * monospace metadata (year + detail). Hover shifts the title to a spot color
+ * and nudges the row right.
+ */
+interface Props {
+  href: string;
+  title: string;
+  excerpt?: string;
+  year?: string | number;
+  meta?: string;
+  external?: boolean;
+}
+
+const { href, title, excerpt, year, meta, external = false } = Astro.props;
+---
+
+<a
+  href={href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  class="group grid grid-cols-[1fr_auto] items-baseline gap-5 border-b-2 border-line py-4 transition-[padding] hover:pl-3"
+>
+  <div>
+    <div
+      class="font-sans text-xl font-extrabold uppercase transition-colors group-hover:text-pink md:text-2xl"
+    >
+      {title}
+    </div>
+    {excerpt && <p class="mt-1 max-w-[54ch] text-sm text-muted">{excerpt}</p>}
+  </div>
+  {
+    (year || meta) && (
+      <div class="text-right font-mono text-xs whitespace-nowrap text-faint">
+        {year && <span class="block font-bold text-indigo">{year}</span>}
+        {meta}
+      </div>
+    )
+  }
+</a>
