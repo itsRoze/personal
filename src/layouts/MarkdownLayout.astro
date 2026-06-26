@@ -1,5 +1,6 @@
 ---
 import Layout from "./Layout.astro";
+import PosterHeading from "@components/PosterHeading.astro";
 
 interface Props {
   title: string;
@@ -9,6 +10,12 @@ interface Props {
   minutesRead: string;
 }
 const { title, excerpt, ogImage, date, minutesRead } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString("en-us", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
 ---
 
 <Layout
@@ -18,23 +25,30 @@ const { title, excerpt, ogImage, date, minutesRead } = Astro.props;
   type="article"
   date={date}
 >
-  <h1 class="text-3xl font-bold pb-4">
-    {title}
-  </h1>
-  <div class="space-x-4 text-sm font-medium">
-    <time
-      >🗓️ {
-        new Date(date).toLocaleDateString("en-us", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        })
-      }</time
-    ><span>⏳ {minutesRead}</span>
-  </div>
-  <article
-    class="prose prose-h1:text-2xl max-w-screen-md px-0 lg:mt-8 mt-4 markdown"
-  >
-    <slot />
+  <article class="mx-auto w-full max-w-[720px] px-6 py-14 md:px-8">
+    <div
+      class="mb-5 flex flex-wrap gap-4 font-mono text-xs tracking-wide text-muted uppercase"
+    >
+      <span class="font-bold text-indigo">{formattedDate}</span>
+      <span>{minutesRead}</span>
+      <span>Essay</span>
+    </div>
+
+    <PosterHeading
+      text={title}
+      as="h1"
+      ghost={false}
+      class="mb-8 text-4xl leading-[0.95] md:text-6xl"
+    />
+
+    <div
+      class="markdown prose prose-lg max-w-none font-sans
+        prose-headings:font-poster prose-headings:uppercase prose-headings:tracking-tight prose-headings:text-ink
+        prose-a:text-indigo prose-a:font-medium prose-a:underline-offset-2
+        prose-blockquote:border-l-4 prose-blockquote:border-pink prose-blockquote:not-italic prose-blockquote:font-poster prose-blockquote:uppercase prose-blockquote:text-marigold
+        prose-strong:text-ink prose-code:text-pink"
+    >
+      <slot />
+    </div>
   </article>
 </Layout>

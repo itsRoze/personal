@@ -1,40 +1,30 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import BlogCard from "@/components/BlogCard.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import IndexRow from "@components/IndexRow.astro";
 import { getCollection, render } from "astro:content";
 
-const allPosts = await getCollection("blog");
+const posts = (await getCollection("blog"))
+  .filter((p) => !p.data.isDraft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-//sort by date
-allPosts.sort((a, b) => {
-  const dateA = new Date(a.data.date);
-  const dateB = new Date(b.data.date);
-  return dateB.getTime() - dateA.getTime();
-});
+const rows = await Promise.all(
+  posts.map(async (p) => {
+    const { remarkPluginFrontmatter } = await render(p);
+    return {
+      href: `/blog/${p.id}`,
+      title: p.data.title,
+      excerpt: p.data.excerpt,
+      year: new Date(p.data.date).getFullYear(),
+      meta: remarkPluginFrontmatter.minutesRead as string,
+    };
+  }),
+);
 ---
 
-<Layout title="Roze | Blog" description="Blog">
-  <h1 class="text-3xl font-bold pb-10">Blog</h1>
-  <section>
-    <ul class="space-y-6">
-      {
-        allPosts.map(async (post) => {
-          const { remarkPluginFrontmatter } = await render(post);
-          if (post.data.isDraft) return null;
-
-          return (
-            <li>
-              <BlogCard
-                url={`/blog/${post.id}`}
-                title={post.data.title}
-                excerpt={post.data.excerpt}
-                date={post.data.date}
-                minutesRead={remarkPluginFrontmatter.minutesRead}
-              />
-            </li>
-          );
-        })
-      }
-    </ul>
+<Layout title="Writing — Roze" description="Essays and notes by Roze.">
+  <section class="mx-auto w-full max-w-[1100px] px-6 py-14 md:px-10">
+    <SectionHeader title="Writing" caption={`[ ${rows.length} essays ]`} rose />
+    {rows.map((r) => <IndexRow {...r} />)}
   </section>
 </Layout>
