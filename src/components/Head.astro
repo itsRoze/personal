@@ -42,6 +42,15 @@ const { pathname } = Astro.url;
   <link rel="canonical" href={`https://roze.dev${pathname}`} />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
+  {/* Noto Nastaliq Urdu, subset to just the روز mark (3 glyphs) — keeps the
+     bilingual signature as real text without shipping the full variable font. */}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@500&text=%D8%B1%D9%88%D8%B2&display=swap"
+  />
+
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
   <ClientRouter />
