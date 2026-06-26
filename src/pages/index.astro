@@ -1,32 +1,110 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+import Rose from "@components/Rose.astro";
+import PosterHeading from "@components/PosterHeading.astro";
+import SectionHeader from "@components/SectionHeader.astro";
+import IndexRow from "@components/IndexRow.astro";
+import WorkCard from "@components/WorkCard.astro";
+import projects from "@data/projects.json";
+import { getCollection, render } from "astro:content";
+
+const posts = (await getCollection("blog"))
+  .filter((p) => !p.data.isDraft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const writing = await Promise.all(
+  posts.slice(0, 4).map(async (p) => {
+    const { remarkPluginFrontmatter } = await render(p);
+    return {
+      href: `/blog/${p.id}`,
+      title: p.data.title,
+      excerpt: p.data.excerpt,
+      year: new Date(p.data.date).getFullYear(),
+      meta: remarkPluginFrontmatter.minutesRead as string,
+    };
+  }),
+);
+
+const accents = ["indigo", "pink", "marigold"] as const;
+const work = projects.slice(0, 3);
 ---
 
 <Layout
   title="Roze"
-  description="Hi I'm Roze. An engineer and writer"
+  description="Engineer, writer & maker working where technology meets art and public life."
 >
-  <h1 class="text-3xl font-bold pb-10">Hello</h1>
-  <article class="text-xl space-y-4 leading-relaxed">
-  <p>
-    My work sits at the intersection of technology, art, and public life. I’ve created
-    data visualizations exhibited in art spaces, built tools cited in human rights
-    reports, held fellowships in playwriting, and built independent software projects and startups.
-  </p>
-  <p>
-    I studied computer science at the University of Virginia, where my machine learning research
-    was awarded High Distinctions. I later worked on healthcare interoperability at Epic before
-    becoming an independent engineer and researcher. Now I'm an engineer at First Round Capital
-    building tools to help find new startups.
-  </p>
-  <p>
-    If you’d like to work together, you can reach me at
-    <span class="whitespace-nowrap">roze@codestache dot com</span>.
-  </p>
-  <div class="flex font-light gap-2">
-    <code class="mr-2">&#8212;</code>
-    <p>Roze</p>
-    <p class="font-urdu-nastaliq -mt-1 text-gray-600">روز</p>
-  </div>
-</article>
+  {/* HERO */}
+  <section class="relative overflow-hidden border-b-4 border-line">
+    <div
+      class="halftone pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply"
+    >
+    </div>
+    <div
+      class="relative mx-auto flex w-full max-w-[1100px] flex-col gap-6 px-6 pt-10 pb-16 md:px-10"
+    >
+      <div class="flex items-start justify-between gap-6">
+        <div>
+          <p
+            class="mb-5 font-mono text-xs tracking-[0.2em] text-indigo uppercase"
+          >
+            Engineer · Writer · Maker
+          </p>
+          <PosterHeading
+            text="ROZE"
+            class="text-[24vw] leading-[0.82] md:text-[170px]"
+          />
+        </div>
+        <Rose size={150} shadow class="hidden shrink-0 md:block" />
+      </div>
+      <p class="max-w-[34ch] font-sans text-xl leading-snug md:text-2xl">
+        Working where technology meets art and public life — data visualizations
+        in art spaces, tools cited in human-rights reports, <span
+          class="text-muted">and software built mostly out of curiosity.</span
+        >
+      </p>
+      <div
+        class="mt-2 flex items-center gap-3 font-mono text-sm text-muted"
+      >
+        <span class="h-0.5 w-9 bg-indigo"></span> Roze
+        <span class="urdu text-2xl text-pink">روز</span>
+      </div>
+    </div>
+  </section>
+
+  {/* WRITING */}
+  <section class="mx-auto w-full max-w-[1100px] px-6 py-16 md:px-10">
+    <SectionHeader title="Selected Writing" caption="[ all essays → ]" />
+    {writing.map((w) => <IndexRow {...w} />)}
+    <a
+      href="/blog"
+      class="mt-6 inline-block font-mono text-xs tracking-wider text-indigo uppercase hover:text-pink"
+      >View all writing →</a
+    >
+  </section>
+
+  {/* WORK */}
+  <section
+    class="mx-auto w-full max-w-[1100px] border-t-4 border-line px-6 py-16 md:px-10"
+  >
+    <SectionHeader title="Work" caption="[ selected · archive → ]" rose />
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+      {
+        work.map((p, i) => (
+          <WorkCard
+            title={p.title}
+            year={p.year}
+            tag={p.tags?.[0]}
+            url={p.url}
+            github={p.github}
+            accent={accents[i % accents.length]}
+          />
+        ))
+      }
+    </div>
+    <a
+      href="/projects"
+      class="mt-8 inline-block font-mono text-xs tracking-wider text-indigo uppercase hover:text-pink"
+      >View all work →</a
+    >
+  </section>
 </Layout>
