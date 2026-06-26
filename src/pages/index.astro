@@ -65,14 +65,15 @@ const work = projects.slice(0, 3);
   <section
     class="mx-auto w-full max-w-[1100px] border-t-4 border-line px-6 py-16 md:px-10"
   >
-    <SectionHeader title="Work" caption="[ selected · archive → ]" rose />
+    <SectionHeader title="Work" caption="[ selected · archive → ]" />
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
       {
         work.map((p, i) => (
           <WorkCard
             title={p.title}
             year={p.year}
-            tag={p.tags?.[0]}
+            description={p.description}
+            tags={p.tags}
             url={p.url}
             github={p.github}
             accent={accents[i % accents.length]}

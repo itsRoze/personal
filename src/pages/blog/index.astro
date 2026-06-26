@@ -9,12 +9,7 @@ const rows = await getWritingRows();
 
 <Layout title="Writing — Roze" description="Essays and notes by Roze.">
   <section class="mx-auto w-full max-w-[1100px] px-6 py-14 md:px-10">
-    <SectionHeader
-      as="h1"
-      title="Writing"
-      caption={`[ ${rows.length} essays ]`}
-      rose
-    />
+    <SectionHeader as="h1" title="Writing" caption={`[ ${rows.length} essays ]`} />
     {rows.map((r) => <IndexRow {...r} />)}
   </section>
 </Layout>

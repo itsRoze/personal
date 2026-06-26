@@ -13,7 +13,6 @@ const accents = ["indigo", "pink", "marigold"] as const;
       as="h1"
       title="Work"
       caption={`[ ${projects.length} projects ]`}
-      rose
     />
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
       {
@@ -21,7 +20,8 @@ const accents = ["indigo", "pink", "marigold"] as const;
           <WorkCard
             title={p.title}
             year={p.year}
-            tag={p.tags?.[0]}
+            description={p.description}
+            tags={p.tags}
             url={p.url}
             github={p.github}
             accent={accents[i % accents.length]}

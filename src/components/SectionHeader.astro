@@ -1,21 +1,15 @@
 ---
-import Rose from "@components/Rose.astro";
-
 interface Props {
   title: string;
   caption?: string;
-  rose?: boolean;
   as?: "h1" | "h2"; // h1 when this header IS the page title (standalone list pages)
 }
 
-const { title, caption, rose = false, as: Heading = "h2" } = Astro.props;
+const { title, caption, as: Heading = "h2" } = Astro.props;
 ---
 
 <div class="mb-8 flex items-end justify-between gap-4 border-b-4 border-line pb-4">
-  <Heading
-    class="flex items-center gap-3 font-poster text-3xl leading-none uppercase md:text-5xl"
-  >
-    {rose && <Rose size={34} decorative />}
+  <Heading class="font-poster text-3xl leading-none uppercase md:text-5xl">
     {title}
   </Heading>
   {
