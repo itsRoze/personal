@@ -1,5 +1,12 @@
 [
   {
+    "title": "Smriti",
+    "description": "Smriti is my personal Claude Code skill stack — an opinionated set of skills that carries a feature from idea to reviewed, tested code in a single flow, keeping me in the loop at a few key gates and learning across sessions.",
+    "year": "2026-Present",
+    "github": "https://github.com/itsRoze/smriti",
+    "tags": ["Claude Code", "Shell", "TypeScript", "Bun", "AI"]
+  },
+  {
     "title": "4RL Digital Icebreaker",
     "description": "An early prototype for an early stage start up that could be used in person for events, conferences, and meetups.",
     "year": "2024",
