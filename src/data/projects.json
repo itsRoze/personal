@@ -7,10 +7,16 @@
     "tags": ["Claude Code", "Shell", "TypeScript", "Bun", "AI"]
   },
   {
+    "title": "Human Rights Data Visualization",
+    "description": "An interactive data story examining the question of genocidal intent in the war in Gaza, presenting the evidence and letting readers decide for themselves. It reached the front page of Reddit, has been featured in museum exhibits, and was discussed at the MENA conference.",
+    "year": "2024",
+    "url": "https://isitgenocide.com/",
+    "tags": ["JavaScript", "Data Viz"]
+  },
+  {
     "title": "4RL Digital Icebreaker",
     "description": "An early prototype for an early stage start up that could be used in person for events, conferences, and meetups.",
     "year": "2024",
-    "url": "https://4rlapp.com/",
     "github": "https://github.com/itsRoze/4RL-Prototype",
     "tags": ["NextJS", "AWS", "Tailwind CSS"]
   },
@@ -48,7 +54,6 @@
     "title": "Modal",
     "description": "My first SaaS app. I never found a great productivity manager, so I built an opinionated one. Modal was designed with simplicity for the everyday user",
     "year": "2023-Present",
-    "url": "https://usemodal.com/",
     "github": "https://github.com/itsRoze/modal",
     "tags": ["React", "NextJS", "Tailwind CSS", "React Native", "AWS", "SQL"]
   },
