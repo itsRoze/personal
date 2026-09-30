@@ -1,5 +1,12 @@
 [
   {
+    "title": "YNAB MCP",
+    "description": "I wanted to talk through my budget and have the changes land in YNAB. So I built an open-source MCP server for Claude and Codex, with a private Cloudflare deployment that stays available when my laptop is off.",
+    "year": "2026",
+    "github": "https://github.com/itsRoze/ynab-mcp",
+    "tags": ["TypeScript", "MCP", "Cloudflare Workers", "OAuth"]
+  },
+  {
     "title": "Smriti",
     "description": "Smriti is my personal Claude Code skill stack — an opinionated set of skills that carries a feature from idea to reviewed, tested code in a single flow, keeping me in the loop at a few key gates and learning across sessions.",
     "year": "2026-Present",
