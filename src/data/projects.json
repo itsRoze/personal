@@ -1,5 +1,12 @@
 [
   {
+    "title": "Goblin Foundry",
+    "description": "I wanted a shared place to plan work with AI agents and see what was blocking what. So I built a local-first issue board with dependency graphs, a keyboard-driven interface, and a CLI for agents. Plans stay beside the tickets; approval stays with me.",
+    "year": "2026",
+    "github": "https://github.com/itsRoze/goblin-foundry",
+    "tags": ["AI Agents", "TypeScript", "React", "Bun", "SQLite"]
+  },
+  {
     "title": "YNAB MCP",
     "description": "I wanted to talk through my budget and have the changes land in YNAB. So I built an open-source MCP server for Claude and Codex, with a private Cloudflare deployment that stays available when my laptop is off.",
     "year": "2026",
